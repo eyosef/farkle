@@ -6,8 +6,8 @@ import PlayFarkle from '../components/PlayFarkle';
 import NotFound from '../components/NotFound';
 import FarkleInfo from '../components/FarkleInfo';
 import SubmitComment from '../containers/SubmitComment';
-import LogIn from '../containers/LogIn';
 import Welcome from '../components/Welcome';
+import Discuss from '../components/Discuss';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -16,10 +16,10 @@ const AppRouter = () => (
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/submitcomment" component={SubmitComment}/>
-                    <Route path="/login" component={LogIn}/>
                     <Route path="/farkleinfo" component={FarkleInfo} />
                     <Route path="/instructions" component={FarkleInstructions} />
                     <Route path="/playfarkle" component={PlayFarkle}/>
+                    <Route path="/discuss" component={Discuss}/>
                     <Route component={NotFound}/>
                 </Switch>
         </div>

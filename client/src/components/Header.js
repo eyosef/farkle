@@ -10,6 +10,7 @@ const Header = () => (
         <NavLink to="/instructions" activeClassName="is-active">Instructions</NavLink><br></br>
         <NavLink to="/farkleinfo" activeClassName="is-active">What's Farkle?</NavLink><br></br>
         <NavLink to="/playfarkle" activeClassName="is-active">Farkle: a Simulation</NavLink><br></br>
+        <NavLink to="/discuss" activeClassName="is-active">Discuss</NavLink><br></br>
     </header>
 );
 

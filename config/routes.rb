@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  namespace :api do
-    resources :users, only: [:index, :edit, :update, :show]
 
-    post '/signup' => 'users#create'
-    post '/settings' => 'users#update'
-    
-    post '/login' => 'sessions#login'
-    get '/logout' => 'sessions#destroy'
-    post '/find' => 'sessions#find'
-
+  resources :users, only: [:show] do
+    resources :posts
+    resources :comments
   end
+
+  # resources :comments
+  resources :posts do
+    resources :comments
+  end
+  resources :users
+
+  root to: 'application#home'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

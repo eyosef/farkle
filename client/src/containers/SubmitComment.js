@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { signUp } from '../actions/sessionActions.js';
+import { commentActions } from '../actions/commentActions';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 class SubmitComment extends Component {
 
@@ -18,18 +18,14 @@ class SubmitComment extends Component {
     }
     
     onSubmitHandler = event => {
-        event.preventDefault();
-        this.props.signUp(this.state)
+        event.preventDefault()
+        let formContent = Object.assign({}, this.state, {postId: this.props.postId})
+        this.props.submitComment(formContent);
+        this.refs.userInput.value = '';
+        this.refs.contentInput.value = '';
       }
 
     render() {
-        if (this.props.user.id) {
-            return (
-                <Redirect to='/settings' />
-            )
-        }
-
-
         return (
             <div>
                 <h3> Submit a Comment</h3>
@@ -75,10 +71,10 @@ class SubmitComment extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.session.user
-    }
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        commentActions: commentActions
+    }, dispatch)
   }
   
-export default withRouter(connect(mapStateToProps, { signUp })(SubmitComment));
+  export default connect(null, mapDispatchToProps)(SubmitComment);
