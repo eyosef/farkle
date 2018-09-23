@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class SubmitComment extends Component {
+    constructor(props) {
+        super(props)
 
-    state = {
-        username: '',
-        email: '',
-        password: ''
-    };
+        this.state = {
+            username: '',
+            email: '',
+            comment: ''
+        };
+    }
+
 
     onUserInput = (event) => {
         this.setState({
@@ -20,9 +24,10 @@ class SubmitComment extends Component {
     onSubmitHandler = event => {
         event.preventDefault()
         let formContent = Object.assign({}, this.state, {postId: this.props.postId})
-        this.props.submitComment(formContent);
-        this.refs.userInput.value = '';
-        this.refs.contentInput.value = '';
+        this.props.commentActions(formContent);
+        this.refs.username.value = '';
+        this.refs.email.value = '';
+        this.refs.comment.value = '';
       }
 
     render() {
@@ -32,6 +37,7 @@ class SubmitComment extends Component {
                 <form onSubmit={this.onSubmitHandler.bind(this)}>
                     <label>Username: </label>
                     <input 
+                        ref="username"
                         type="text"
                         id="username"
                         name="username"
@@ -43,6 +49,7 @@ class SubmitComment extends Component {
 
                     <label>Email: </label>
                     <input
+                        ref="email"
                         type="text"
                         id="email"
                         name="email"
@@ -54,11 +61,12 @@ class SubmitComment extends Component {
                     <br /><br />
                     <label>Comment: </label>
                     <input
-                        type="comment"
+                        ref="comment"
+                        type="text"
                         id="comment"
                         name="comment"
                         placeholder="comment"
-                        value={this.state.password}
+                        value={this.state.comment}
                         onChange={(event) => this.onUserInput(event)}
                     />
 

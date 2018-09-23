@@ -19,7 +19,7 @@ const AppRouter = () => (
                     <Route path="/farkleinfo" component={FarkleInfo} />
                     <Route path="/instructions" component={FarkleInstructions} />
                     <Route path="/playfarkle" component={PlayFarkle}/>
-                    <Route path="/discuss" component={Discuss}/>
+                    <Route path="/comments" component={Discuss}/>
                     <Route component={NotFound}/>
                 </Switch>
         </div>
